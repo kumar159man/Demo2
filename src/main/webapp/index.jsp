@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>This is just angermanagement</h2>
+<h2>This is just management</h2>
 </body>
 </html>
