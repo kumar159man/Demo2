@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>This one for demo1</h2>
+<h2>This one for demo</h2>
 </body>
 </html>
