@@ -1,0 +1,38 @@
+node {
+    checkout scm
+    
+        stage('Code Build and Package') {
+    
+        sh label: '', script: 'mvn clean package'
+    }
+    
+     stage('Archive Artifact') {
+    
+        archiveArtifacts 'target/*.war'
+    }
+    
+         stage('Deployment to Dev Env') {
+    
+        sh label: '', script: '''cd /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps/
+rm -rf ms*
+cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaApp/target/ms-Demo1.war /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps/'''
+    }
+    
+     
+    
+    
+}
+
+stage('Manual Approval') {
+input 'Shall we deploy on prod'
+}
+
+node {
+
+    stage('Deployment to Dev Env') {
+        
+            sh label: '', script: '''cd /Users/manishkumar/Documents/tomcat_prod/webapps/
+    rm -rf ms*
+    cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaApp/target/ms-Demo1.war /Users/manishkumar/Documents/tomcat_prod/webapps/'''
+        }
+}
