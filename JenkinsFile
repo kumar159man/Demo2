@@ -15,7 +15,7 @@ node {
     
         sh label: '', script: '''cd /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps/
 rm -rf ms*
-cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaApp/target/ms-Demo1.war /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps/'''
+cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaAppJenkinsFile/target/ms-Demo1.war /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps/'''
     }
     
      
@@ -33,6 +33,6 @@ node {
         
             sh label: '', script: '''cd /Users/manishkumar/Documents/tomcat_prod/webapps/
     rm -rf ms*
-    cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaApp/target/ms-Demo1.war /Users/manishkumar/Documents/tomcat_prod/webapps/'''
+    cp /Users/manishkumar/.jenkins/workspace/PipelineCICDSampleJavaAppJenkinsFile/target/ms-Demo1.war /Users/manishkumar/Documents/tomcat_prod/webapps/'''
         }
 }
