@@ -1,0 +1,35 @@
+node {
+checkout scm
+stage('Build and Package') {
+    sh label: '', script: 'mvn clean package'
+}
+
+stage('Archival') {
+    archiveArtifacts 'target/*.war'
+    
+}
+stage('Deploy to Dev') {
+   sh label: '', script: '''cd /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps
+rm -rf ms*
+cp /Users/manishkumar/.jenkins/workspace/D4/target/ms-Demo1.war /Users/manishkumar/Documents/apache-tomcat-9.0.34/webapps''' 
+    
+}
+
+}
+
+stage('Manual intervention') {
+input 'Shall we deploy to prod?'
+}
+
+node {
+    stage('Deploy to prod') {
+        sh label: '', script: '''cd /Users/manishkumar/Documents/tomcat_prod/webapps
+rm -rf ms*
+cp /Users/manishkumar/.jenkins/workspace/D4/target/ms-Demo1.war /Users/manishkumar/Documents/tomcat_prod/webapps''' 
+    
+        
+        
+    }
+
+    
+}
