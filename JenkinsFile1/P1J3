@@ -6,19 +6,24 @@ pipeline{
         dog="Chelsea"
     }
     stages{
-        stage('First Print statement'){
-            environment{
-                breed="Lab"
+        try{
+            stage('First Print statement'){
+                environment{
+                    breed="Lab"
+                }
+                steps{
+                    echo "Hello $dog which is of breed $breed"
+                }
             }
-            steps{
-                echo "Hello $dog which is of breed $breed"
+            stage('Second Print statement'){
+                steps{
+                
+                    echo "Hellp $dog of $breed breed let us go to $foo" 
+                }
             }
         }
-        stage('Second Print statement'){
-            steps{
-            
-                echo "Hello $dog of $breed breed let us go to $foo" 
-            }
+        catch (Exception ex){
+            println ex.printStackTrace()
         }
     }
 }
