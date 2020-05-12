@@ -1,0 +1,24 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('Build') {
+         steps {
+            // Download shell script from git
+            git credentialsId: '595ac81a-888a-4f4c-81fd-15a9e999f45b', url: 'https://github.com/kumar159man/Demo2.git'
+
+            // Run Shell script
+            sh '''
+            chmod +x test.sh
+            ./test.sh
+            '''
+         }
+
+         post {
+            success {
+               archiveArtifacts '*.txt'
+            }
+         }
+      }
+   }
+}
