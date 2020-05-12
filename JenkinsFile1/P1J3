@@ -1,0 +1,24 @@
+// This script is majorly for understanding scope of environment variables
+pipeline{
+    agent any
+    environment{
+        foo="BAR"
+        dog="Chelsea"
+    }
+    stages{
+        stage('First Print statement'){
+            environment{
+                breed="Lab"
+            }
+            steps{
+                echo "Hello $dog which is of breed $breed"
+            }
+        }
+        stage('Second Print statement'){
+            steps{
+            
+                echo "Hello $dog of $breed breed let us go to $foo" 
+            }
+        }
+    }
+}
