@@ -6,7 +6,6 @@ pipeline{
         dog="Chelsea"
     }
     stages{
-        try{
             stage('First Print statement'){
                 environment{
                     breed="Lab"
@@ -21,9 +20,5 @@ pipeline{
                     echo "Hellp $dog of $breed breed let us go to $foo" 
                 }
             }
-        }
-        catch (Exception ex){
-            println ex.printStackTrace()
-        }
     }
 }
